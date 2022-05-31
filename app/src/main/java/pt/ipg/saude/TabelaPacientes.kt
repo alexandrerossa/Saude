@@ -5,11 +5,11 @@ import android.database.Cursor
 import android.database.sqlite.SQLiteDatabase
 import android.provider.BaseColumns
 
-class TabelaDoutores(db: SQLiteDatabase){
+class TabelaPacientes(db: SQLiteDatabase) {
     private val db: SQLiteDatabase = db
 
-    fun cria(){
-        db.execSQL("CREATE TABLE $NOME_TABELA ( ${BaseColumns._ID} INTEGER PRIMARY KEY AUTOINCREMENT, $CAMPO_NOME_DOUTOR TEXT NOT NULL, $CAMPO_DATA_DE_NASCIMENTO TEXT NOT NULL, $CAMPO_SEXO TEXT NOT NULL )" )
+    fun cria() {
+        db.execSQL("CREATE TABLE $NOME_TABELA ( ${BaseColumns._ID} INTEGER PRIMARY KEY AUTOINCREMENT, $CAMPO_NOME_PACIENTE TEXT NOT NULL, $CAMPO_DATA_DE_NASCIMENTO INTEGER NOT NULL, $CAMPO_SEXO TEXT NOT NULL, $CAMPO_TIPO_CONSULTA INTEGER, $CAMPO_DOUTOR_RESPONSAVEL INTEGER, FOREIGN KEY ($CAMPO_TIPO_CONSULTA) REFERENCES ${TabelaConsultas.CAMPO_NOME_CONSULTA}, FOREIGN KEY (${CAMPO_DOUTOR_RESPONSAVEL}) REFERENCES ${TabelaDoutores.CAMPO_NOME_DOUTOR} )" )
     }
 
     fun insert(values: ContentValues): Long {
@@ -35,11 +35,14 @@ class TabelaDoutores(db: SQLiteDatabase){
         return db.query(NOME_TABELA, columns, selection, selectionArgs, groupBy, having, orderBy)
     }
 
+
+
     companion object{
-        const val NOME_TABELA = "doutores"
-        const val CAMPO_NOME_DOUTOR = "nome"
+        const val NOME_TABELA = "pacientes"
+        const val CAMPO_NOME_PACIENTE = "nome"
         const val CAMPO_DATA_DE_NASCIMENTO = "data_de_nascimento"
         const val CAMPO_SEXO = "sexo"
-
+        const val CAMPO_TIPO_CONSULTA = "tipo_consulta"
+        const val CAMPO_DOUTOR_RESPONSAVEL = "doutor_responsavel"
     }
 }

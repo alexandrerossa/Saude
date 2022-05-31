@@ -1,15 +1,16 @@
 package pt.ipg.saude
 
+
 import android.content.ContentValues
 import android.database.Cursor
 import android.database.sqlite.SQLiteDatabase
 import android.provider.BaseColumns
 
-class TabelaDoutores(db: SQLiteDatabase){
+class TabelaConsultas(db: SQLiteDatabase) {
     private val db: SQLiteDatabase = db
 
-    fun cria(){
-        db.execSQL("CREATE TABLE $NOME_TABELA ( ${BaseColumns._ID} INTEGER PRIMARY KEY AUTOINCREMENT, $CAMPO_NOME_DOUTOR TEXT NOT NULL, $CAMPO_DATA_DE_NASCIMENTO TEXT NOT NULL, $CAMPO_SEXO TEXT NOT NULL )" )
+    fun cria() {
+        db.execSQL("CREATE TABLE $NOME_TABELA ( ${BaseColumns._ID} INTEGER PRIMARY KEY AUTOINCREMENT, $CAMPO_NOME_CONSULTA TEXT NOT NULL, $CAMPO_MACAS_OCUPADAS INTEGER, $CAMPO_MACAS_DISPONIVEIS INTEGER )" )
     }
 
     fun insert(values: ContentValues): Long {
@@ -35,11 +36,12 @@ class TabelaDoutores(db: SQLiteDatabase){
         return db.query(NOME_TABELA, columns, selection, selectionArgs, groupBy, having, orderBy)
     }
 
-    companion object{
-        const val NOME_TABELA = "doutores"
-        const val CAMPO_NOME_DOUTOR = "nome"
-        const val CAMPO_DATA_DE_NASCIMENTO = "data_de_nascimento"
-        const val CAMPO_SEXO = "sexo"
 
+
+    companion object{
+        const val NOME_TABELA = "consultas"
+        const val CAMPO_NOME_CONSULTA = "tipo_de_consulta"
+        const val CAMPO_MACAS_OCUPADAS = "num_macas_ocupadas"
+        const val CAMPO_MACAS_DISPONIVEIS = "num_macas_disponiveis"
     }
 }
