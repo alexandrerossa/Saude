@@ -41,6 +41,20 @@ class TestBaseDados {
         return Doutor.fromCursor(cursor)
     }
 
+    private fun getPacienteBaseDados(tabela: TabelaPacientes, id: Long): Paciente {
+        val cursor = tabela.query(
+            TabelaPacientes.TODAS_COLUNAS,
+            "${BaseColumns._ID}=?",
+            arrayOf(id.toString()),
+            null, null, null
+        )
+
+        assertNotNull(cursor)
+        assert(cursor!!.moveToNext())
+
+        return Paciente.fromCursor(cursor)
+    }
+
     @Before
     fun apagaBaseDados(){
         getAppContext().deleteDatabase(BDSaudeOpenHelper.NOME_BASE_DADOS)
