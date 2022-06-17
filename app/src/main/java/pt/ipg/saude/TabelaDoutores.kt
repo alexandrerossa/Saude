@@ -41,5 +41,7 @@ class TabelaDoutores(db: SQLiteDatabase){
         const val CAMPO_DATA_DE_NASCIMENTO = "data_de_nascimento"
         const val CAMPO_ESPECIALIDADE = "especialidade"
 
+        val TODAS_COLUNAS = arrayOf(BaseColumns._ID, CAMPO_NOME_DOUTOR, CAMPO_DATA_DE_NASCIMENTO, CAMPO_ESPECIALIDADE)
+
     }
 }
