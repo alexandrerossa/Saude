@@ -1,5 +1,6 @@
 package pt.ipg.saude
 
+import android.provider.BaseColumns
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.ext.junit.runners.AndroidJUnit4
 
@@ -17,6 +18,28 @@ import org.junit.Before
 @RunWith(AndroidJUnit4::class)
 class TestBaseDados {
     private fun getAppContext() = InstrumentationRegistry.getInstrumentation().targetContext
+    private fun getBdCovidOpenHelper() = BDSaudeOpenHelper(getAppContext())
+
+    private fun insereDoutores(tabela: TabelaDoutores, doutor: Doutor): Long {
+        val id = tabela.insert(doutor.toContentValues())
+        assertNotEquals(-1, id)
+
+        return id
+    }
+
+    private fun getDoutorBaseDados(tabela: TabelaDoutores, id: Long): Doutor {
+        val cursor = tabela.query(
+            TabelaDoutores.TODAS_COLUNAS,
+            "${BaseColumns._ID}=?",
+            arrayOf(id.toString()),
+            null, null, null
+        )
+
+        assertNotNull(cursor)
+        assert(cursor!!.moveToNext())
+
+        return Doutor.fromCursor(cursor)
+    }
 
     @Before
     fun apagaBaseDados(){
@@ -30,4 +53,19 @@ class TestBaseDados {
         assert(db.isOpen)
         db.close()
     }
+
+    @Test
+    fun consegueInserirDoutores() {
+        val db = getBdCovidOpenHelper().writableDatabase
+        val tabelaDoutores = TabelaDoutores(db)
+
+        val doutor = Doutor(nome = "Francisco", dataNascimento = "12-12-2001", especialidade = "pediatria")
+        doutor.id = insereDoutores(tabelaDoutores, doutor)
+
+        assertEquals(doutor, getDoutorBaseDados(tabelaDoutores, doutor.id))
+
+        db.close()
+    }
+
+
 }
