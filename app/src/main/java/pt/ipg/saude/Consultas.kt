@@ -4,30 +4,30 @@ import android.content.ContentValues
 import android.database.Cursor
 import android.provider.BaseColumns
 
-data class Consultas (var id: Long = -1, var nome: String, var macasocupadas: String, var macasdisponiveis: String){
+data class Consultas (var nome: String, var macasocupadas: Int, var macasdisponiveis: Int, var id: Long = -1){
     fun toContentValues(): ContentValues {
-        val valores = ContentValues().apply {
-            put(TabelaConsultas.CAMPO_NOME_CONSULTA, nome)
-            put(TabelaConsultas.CAMPO_MACAS_OCUPADAS, macasocupadas)
-            put(TabelaConsultas.CAMPO_MACAS_DISPONIVEIS, macasdisponiveis)
-        }
+        val valores = ContentValues()
+            valores.put(TabelaConsultas.CAMPO_NOME_CONSULTA, nome)
+            valores.put(TabelaConsultas.CAMPO_MACAS_OCUPADAS, macasocupadas)
+            valores.put(TabelaConsultas.CAMPO_MACAS_DISPONIVEIS, macasdisponiveis)
+
 
         return valores
     }
 
     companion object {
         fun fromCursor(cursor: Cursor): Consultas {
-            val colId = cursor.getColumnIndex(BaseColumns._ID)
-            val colNome = cursor.getColumnIndex(TabelaConsultas.CAMPO_NOME_CONSULTA)
-            val colMacasOcupadas = cursor.getColumnIndex(TabelaConsultas.CAMPO_MACAS_OCUPADAS)
-            val colMacasDisponiveis = cursor.getColumnIndex(TabelaConsultas.CAMPO_MACAS_DISPONIVEIS)
+            val posId = cursor.getColumnIndex(BaseColumns._ID)
+            val posNome = cursor.getColumnIndex(TabelaConsultas.CAMPO_NOME_CONSULTA)
+            val posMacasOcupadas = cursor.getColumnIndex(TabelaConsultas.CAMPO_MACAS_OCUPADAS)
+            val posMacasDisponiveis = cursor.getColumnIndex(TabelaConsultas.CAMPO_MACAS_DISPONIVEIS)
 
-            val id = cursor.getLong(colId)
-            val nome = cursor.getString(colNome)
-            val macasOcupadas = cursor.getString(colMacasOcupadas)
-            val macasDisponiveis = cursor.getString(colMacasDisponiveis)
+            val id = cursor.getLong(posId)
+            val nome = cursor.getString(posNome)
+            val macasOcupadas = cursor.getInt(posMacasOcupadas)
+            val macasDisponiveis = cursor.getInt(posMacasDisponiveis)
 
-            return Consultas(id, nome, macasOcupadas, macasDisponiveis)
+            return Consultas(nome, macasOcupadas, macasDisponiveis, id)
         }
     }
 }
