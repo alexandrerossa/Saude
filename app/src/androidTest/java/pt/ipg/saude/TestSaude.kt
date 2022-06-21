@@ -1,12 +1,11 @@
 package pt.ipg.saude
 
+import android.database.sqlite.SQLiteDatabase
 import android.provider.BaseColumns
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.ext.junit.runners.AndroidJUnit4
-
 import org.junit.Test
 import org.junit.runner.RunWith
-
 import org.junit.Assert.*
 import org.junit.Before
 
@@ -17,52 +16,36 @@ import org.junit.Before
  */
 @RunWith(AndroidJUnit4::class)
 class TestBaseDados {
-    private fun getAppContext() = InstrumentationRegistry.getInstrumentation().targetContext
-    private fun getBdCovidOpenHelper() = BDSaudeOpenHelper(getAppContext())
+    private fun appContext() = InstrumentationRegistry.getInstrumentation().targetContext
 
-    private fun insereDoutores(tabela: TabelaDoutores, doutor: Doutor): Long {
-        val id = tabela.insert(doutor.toContentValues())
-        assertNotEquals(-1, id)
-
-        return id
+    private fun getWritableDatabase(): SQLiteDatabase {
+        val openHelper = BDSaudeOpenHelper(appContext())
+        return openHelper.writableDatabase
     }
 
-    private fun getDoutorBaseDados(tabela: TabelaDoutores, id: Long): Doutor {
-        val cursor = tabela.query(
-            TabelaDoutores.TODAS_COLUNAS,
-            "${BaseColumns._ID}=?",
-            arrayOf(id.toString()),
-            null, null, null
-        )
-
-        assertNotNull(cursor)
-        assert(cursor!!.moveToNext())
-
-        return Doutor.fromCursor(cursor)
+    private fun insereDoutor(db: SQLiteDatabase, doutor: Doutor) {
+        doutor.id = TabelaBDDoutores(db).insert(doutor.toContentValues())
+        assertNotEquals(-1, doutor.id)
     }
 
-    private fun getPacienteBaseDados(tabela: TabelaPacientes, id: Long): Paciente {
-        val cursor = tabela.query(
-            TabelaPacientes.TODAS_COLUNAS,
-            "${BaseColumns._ID}=?",
-            arrayOf(id.toString()),
-            null, null, null
-        )
+    private fun inserePaciente(db: SQLiteDatabase, paciente: Paciente) {
+        paciente.id = TabelaBDPacientes(db).insert(paciente.toContentValues())
+        assertNotEquals(-1, paciente.id)
+    }
 
-        assertNotNull(cursor)
-        assert(cursor!!.moveToNext())
-
-        return Paciente.fromCursor(cursor)
+    private fun insereConsulta(db: SQLiteDatabase, consulta: Consultas ){
+        consulta.id = TabelaBDConsultas(db).insert(consulta.toContentValues())
+        assertNotEquals(-1, consulta.id)
     }
 
     @Before
     fun apagaBaseDados(){
-        getAppContext().deleteDatabase(BDSaudeOpenHelper.NOME_BASE_DADOS)
+        appContext().deleteDatabase(BDSaudeOpenHelper.NOME)
     }
 
     @Test
     fun consegueAbrirBaseDados(){
-        val dbOpenHelper = BDSaudeOpenHelper(getAppContext())
+        val dbOpenHelper = BDSaudeOpenHelper(appContext())
         val db = dbOpenHelper.readableDatabase
         assert(db.isOpen)
         db.close()
@@ -70,16 +53,33 @@ class TestBaseDados {
 
     @Test
     fun consegueInserirDoutores() {
-        val db = getBdCovidOpenHelper().writableDatabase
-        val tabelaDoutores = TabelaDoutores(db)
+        val db = getWritableDatabase()
 
-        val doutor = Doutor(nome = "Francisco", dataNascimento = "12-12-2001", especialidade = "pediatria")
-        doutor.id = insereDoutores(tabelaDoutores, doutor)
-
-        assertEquals(doutor, getDoutorBaseDados(tabelaDoutores, doutor.id))
+        insereDoutor(db,Doutor("João","12-12-2001","Pediatria"))
 
         db.close()
     }
 
+    @Test
+    fun consegueInserirPaciente() {
+        val db = getWritableDatabase()
+
+        inserePaciente(db, Paciente("Francisco","12-12-2001","Masculino","Pediatria","João"))
+
+        db.close()
+    }
+
+    @Test
+    fun consegueInserirConsulta() {
+        val db = getWritableDatabase()
+
+        val doutor = Doutor("João","12-12-2001","Pediatria")
+        insereDoutor(db, doutor)
+
+        val consulta = Consultas("Otorrinolaringología", 1, 5)
+        insereConsulta(db, consulta)
+
+        db.close()
+    }
 
 }
