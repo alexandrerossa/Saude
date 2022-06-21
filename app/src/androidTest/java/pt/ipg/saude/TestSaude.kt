@@ -55,7 +55,7 @@ class TestBaseDados {
     fun consegueInserirDoutores() {
         val db = getWritableDatabase()
 
-        insereDoutor(db,Doutor("João","12-12-2001","Pediatria"))
+        insereDoutor(db,Doutor("João","01-10-1999","Pediatria"))
 
         db.close()
     }
@@ -73,7 +73,7 @@ class TestBaseDados {
     fun consegueInserirConsulta() {
         val db = getWritableDatabase()
 
-        val doutor = Doutor("João","12-12-2001","Pediatria")
+        val doutor = Doutor("João","01-10-1999","Pediatria")
         insereDoutor(db, doutor)
 
         val consulta = Consultas("Otorrinolaringología", 1, 5)
