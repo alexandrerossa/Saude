@@ -4,30 +4,36 @@ import android.content.ContentValues
 import android.database.Cursor
 import android.provider.BaseColumns
 
-class Doutor (var id: Long = -1, var nome: String, var dataNascimento: String, var especialidade: Long){
+data class Doutor (
+    var nome_doutor: String,
+    var dataNascimento: String,
+    var especialidade: String,
+    var id: Long = -1
+    ) {
     fun toContentValues(): ContentValues {
-        val valores = ContentValues().apply {
-            put(TabelaDoutores.CAMPO_NOME_DOUTOR, nome)
-            put(TabelaDoutores.CAMPO_DATA_DE_NASCIMENTO, dataNascimento)
-            put(TabelaDoutores.CAMPO_ESPECIALIDADE, especialidade)
-        }
+        val valores = ContentValues()
+
+            valores.put(TabelaDoutores.CAMPO_NOME_DOUTOR, nome_doutor)
+            valores.put(TabelaDoutores.CAMPO_DATA_DE_NASCIMENTO, dataNascimento)
+            valores.put(TabelaDoutores.CAMPO_ESPECIALIDADE, especialidade)
+
 
         return valores
     }
 
     companion object {
         fun fromCursor(cursor: Cursor): Doutor {
-            val colId = cursor.getColumnIndex(BaseColumns._ID)
-            val colNome = cursor.getColumnIndex(TabelaDoutores.CAMPO_NOME_DOUTOR)
-            val colDataNascimento = cursor.getColumnIndex(TabelaDoutores.CAMPO_DATA_DE_NASCIMENTO)
-            val colEspecialidade = cursor.getColumnIndex(TabelaDoutores.CAMPO_ESPECIALIDADE)
+            val posId = cursor.getColumnIndex(BaseColumns._ID)
+            val posNomeDoutor = cursor.getColumnIndex(TabelaDoutores.CAMPO_NOME_DOUTOR)
+            val posDataNascimento = cursor.getColumnIndex(TabelaDoutores.CAMPO_DATA_DE_NASCIMENTO)
+            val posEspecialidade = cursor.getColumnIndex(TabelaDoutores.CAMPO_ESPECIALIDADE)
 
-            val id = cursor.getLong(colId)
-            val nome = cursor.getString(colNome)
-            val dataNascimento = cursor.getString(colDataNascimento)
-            val especialidade = cursor.getLong(colEspecialidade)
+            val id = cursor.getLong(posId)
+            val nomedoutor = cursor.getString(posNomeDoutor)
+            val dataNascimento = cursor.getString(posDataNascimento)
+            val especialidade = cursor.getString(posEspecialidade)
 
-            return Doutor(id, nome, dataNascimento, especialidade)
+            return Doutor(nomedoutor, dataNascimento, especialidade,id)
         }
     }
 }
