@@ -4,8 +4,7 @@ import android.content.Context
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
 
-class BDSaudeOpenHelper (context: Context?)
-    : SQLiteOpenHelper(context, NOME_BASE_DADOS, null, VERSAO_BASE_DADOS) {
+class BDSaudeOpenHelper (context: Context?) : SQLiteOpenHelper(context, NOME, null, VERSAO) {
     /**
      * Called when the database is created for the first time. This is where the
      * creation of tables and the initial population of the tables should happen.
@@ -46,7 +45,7 @@ class BDSaudeOpenHelper (context: Context?)
     }
 
     companion object {
-        const val NOME_BASE_DADOS = "saude.db"
-        const val VERSAO_BASE_DADOS = 1
+        const val NOME = "saude.db"
+        const val VERSAO = 1
     }
 }
