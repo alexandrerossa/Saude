@@ -82,4 +82,24 @@ class TestBaseDados {
         db.close()
     }
 
+    @Test
+    fun consegueAlterarConsulta() {
+        val db = getWritableDatabase()
+
+        val consulta = Consultas("Teste",0,0)
+        insereConsulta(db, consulta)
+
+        consulta.nome = "Pediatria"
+        consulta.macasocupadas = 1
+        consulta.macasdisponiveis = 2
+
+        val registosAlterados = TabelaBDConsultas(db).update(
+            consulta.toContentValues(),
+            "${BaseColumns._ID}=?",
+            arrayOf("${consulta.id}"))
+
+        assertEquals(1, registosAlterados)
+
+        db.close()
+    }
 }
