@@ -12,11 +12,11 @@ class BDSaudeOpenHelper (context: Context?) : SQLiteOpenHelper(context, NOME, nu
      * @param db The database.
      */
     override fun onCreate(db: SQLiteDatabase?) {
-        if (db != null) {
+        requireNotNull(db)
             TabelaDoutores(db).cria()
             TabelaPacientes(db).cria()
             TabelaConsultas(db).cria()
-        }
+
     }
 
     /**
