@@ -163,4 +163,20 @@ class TestBaseDados {
         db.close()
     }
 
+    @Test
+    fun consegueEliminarPaciente() {
+        val db = getWritableDatabase()
+
+        val paciente = Paciente("Teste","","","","")
+        inserePaciente(db, paciente)
+
+        val registosEliminados = TabelaBDPacientes(db).delete(
+            "${BaseColumns._ID}=?",
+            arrayOf("${paciente.id}"))
+
+        assertEquals(1, registosEliminados)
+
+        db.close()
+    }
+
 }
