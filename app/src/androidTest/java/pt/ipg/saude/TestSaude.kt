@@ -243,4 +243,28 @@ class TestBaseDados {
         assertEquals(paciente, categBD)
     }
 
+    @Test
+    fun consegueLerConsulta() {
+        val db = getWritableDatabase()
+
+        val consulta = Consultas("Emergência",0,0)
+        insereConsulta(db, consulta)
+
+        val cursor = TabelaBDConsultas(db).query(
+            TabelaBDConsultas.TODAS_COLUNAS,
+            "${BaseColumns._ID}=?",
+            arrayOf("${consulta.id}"),
+            null,
+            null,
+            null
+        )
+
+        assertEquals(1, cursor.count)
+        assertTrue(cursor.moveToNext())
+
+        val categBD = Consultas.fromCursor(cursor)
+
+        assertEquals(consulta, categBD)
+    }
+
 }
