@@ -102,4 +102,27 @@ class TestBaseDados {
 
         db.close()
     }
+
+    @Test
+    fun consegueAlterarPaciente() {
+        val db = getWritableDatabase()
+
+        val paciente = Paciente("Teste","","","","")
+        inserePaciente(db, paciente)
+
+        paciente.nome = "João"
+        paciente.dataNascimento = "01-04-2000"
+        paciente.sexo = "M"
+        paciente.tipo_consulta = "Pediatria"
+        paciente.doutor_responsavel = "Pediatria"
+
+        val registosAlterados = TabelaBDPacientes(db).update(
+            paciente.toContentValues(),
+            "${BaseColumns._ID}=?",
+            arrayOf("${paciente.id}"))
+
+        assertEquals(1, registosAlterados)
+
+        db.close()
+    }
 }
