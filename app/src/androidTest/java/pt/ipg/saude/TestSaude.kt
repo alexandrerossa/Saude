@@ -52,7 +52,7 @@ class TestBaseDados {
     }
 
     @Test
-    fun consegueInserirDoutores() {
+    fun consegueInserirDoutor() {
         val db = getWritableDatabase()
 
         insereDoutor(db,Doutor("João","01-10-1999","Pediatria"))
@@ -125,4 +125,26 @@ class TestBaseDados {
 
         db.close()
     }
+
+    @Test
+    fun consegueAlterarDoutor() {
+        val db = getWritableDatabase()
+
+        val doutor = Doutor("Teste","","")
+        insereDoutor(db, doutor)
+
+        doutor.nome_doutor = "Pedro"
+        doutor.dataNascimento = "11-07-1999"
+        doutor.especialidade = "Pediatria"
+
+        val registosAlterados = TabelaBDDoutores(db).update(
+            doutor.toContentValues(),
+            "${BaseColumns._ID}=?",
+            arrayOf("${doutor.id}"))
+
+        assertEquals(1, registosAlterados)
+
+        db.close()
+    }
+
 }
