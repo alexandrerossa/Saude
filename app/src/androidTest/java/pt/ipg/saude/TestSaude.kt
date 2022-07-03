@@ -179,4 +179,20 @@ class TestBaseDados {
         db.close()
     }
 
+    @Test
+    fun consegueEliminarConsulta() {
+        val db = getWritableDatabase()
+
+        val consulta = Consultas("Teste",0,0)
+        insereConsulta(db, consulta)
+
+        val registosEliminados = TabelaBDConsultas(db).delete(
+            "${BaseColumns._ID}=?",
+            arrayOf("${consulta.id}"))
+
+        assertEquals(1, registosEliminados)
+
+        db.close()
+    }
+
 }
