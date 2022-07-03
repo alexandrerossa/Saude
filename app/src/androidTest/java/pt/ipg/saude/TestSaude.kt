@@ -195,4 +195,28 @@ class TestBaseDados {
         db.close()
     }
 
+    @Test
+    fun consegueLerDoutor() {
+        val db = getWritableDatabase()
+
+        val doutor = Doutor("Tiago","","")
+        insereDoutor(db, doutor)
+
+        val cursor = TabelaBDDoutores(db).query(
+            TabelaBDDoutores.TODAS_COLUNAS,
+            "${BaseColumns._ID}=?",
+            arrayOf("${doutor.id}"),
+            null,
+            null,
+            null
+        )
+
+        assertEquals(1, cursor.count)
+        assertTrue(cursor.moveToNext())
+
+        val categBD = Doutor.fromCursor(cursor)
+
+        assertEquals(doutor, categBD)
+    }
+
 }
