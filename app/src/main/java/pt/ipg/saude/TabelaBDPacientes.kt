@@ -9,7 +9,7 @@ class TabelaBDPacientes(db: SQLiteDatabase) : TabelaBD(db, NOME) {
     }
 
     companion object {
-        const val NOME = "doutores"
+        const val NOME = "pacientes"
         const val CAMPO_NOME_PACIENTE = "nome"
         const val CAMPO_DATA_DE_NASCIMENTO = "data_de_nascimento"
         const val CAMPO_SEXO = "sexo"
