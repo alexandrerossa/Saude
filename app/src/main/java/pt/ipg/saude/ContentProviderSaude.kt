@@ -2,7 +2,9 @@ package pt.ipg.saude
 
 import android.content.ContentProvider
 import android.content.ContentValues
+import android.content.UriMatcher
 import android.database.Cursor
+import android.database.sqlite.SQLiteOpenHelper
 import android.net.Uri
 import pt.ipg.saude.*
 
@@ -207,4 +209,29 @@ class ContentProviderSaude : ContentProvider() {
     ): Int {
         TODO("Not yet implemented")
     }
+
+    companion object {
+        const val AUTHORITY = "pt.ipg.saude"
+
+        const val URI_DOUTORES = 100
+        const val URI_DOUTOR_ESPECIFICO = 101
+        const val URI_PACIENTES = 200
+        const val URI_PACIENTE_ESPECIFICO = 201
+        const val URI_CONSULTAS = 300
+        const val URI_CONSULTA_ESPECIFICA = 301
+
+        fun getUriMatcher() : UriMatcher {
+            var uriMatcher = UriMatcher(UriMatcher.NO_MATCH)
+
+            uriMatcher.addURI(AUTHORITY, TabelaBDDoutores.NOME, URI_DOUTORES)
+            uriMatcher.addURI(AUTHORITY, "${TabelaBDDoutores.NOME}/#", URI_DOUTOR_ESPECIFICO)
+            uriMatcher.addURI(AUTHORITY, TabelaBDPacientes.NOME, URI_PACIENTES)
+            uriMatcher.addURI(AUTHORITY, "${TabelaBDPacientes.NOME}/#", URI_PACIENTE_ESPECIFICO)
+            uriMatcher.addURI(AUTHORITY, TabelaBDConsultas.NOME, URI_CONSULTAS)
+            uriMatcher.addURI(AUTHORITY, "${TabelaBDConsultas.NOME}/#", URI_CONSULTA_ESPECIFICA)
+
+            return uriMatcher
+        }
+    }
+
 }
