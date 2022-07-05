@@ -1,11 +1,20 @@
 package pt.ipg.saude
 
+import android.database.Cursor
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 
-class AdapterDoutores(val fragment: , var cursor: Cursor? = null) : RecyclerView.Adapter<AdapterDoutores.ViewHolderDoutores>() {
+class AdapterDoutores(val fragment: ) : RecyclerView.Adapter<AdapterDoutores.ViewHolderDoutores>() {
+
+    public var cursor: Cursor? = null
+        get() = field
+        set(value) {
+            field = value
+            notifyDataSetChanged()
+        }
+
 
     class ViewHolderDoutores(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
