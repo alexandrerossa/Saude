@@ -7,6 +7,7 @@ import android.net.Uri
 import pt.ipg.saude.*
 
 class ContentProviderSaude : ContentProvider() {
+    var db : BDSaudeOpenHelper? = null
     /**
      * Implement this to initialize your content provider on startup.
      * This method is called for all registered content providers on the
@@ -35,7 +36,9 @@ class ContentProviderSaude : ContentProvider() {
      * @return true if the provider was successfully loaded, false otherwise
      */
     override fun onCreate(): Boolean {
-        TODO("Not yet implemented")
+        db = BDSaudeOpenHelper(context)
+
+        return true
     }
 
     /**
