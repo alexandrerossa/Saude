@@ -6,10 +6,11 @@ import android.content.UriMatcher
 import android.database.Cursor
 import android.database.sqlite.SQLiteOpenHelper
 import android.net.Uri
+import android.provider.BaseColumns
 import pt.ipg.saude.*
 
 class ContentProviderSaude : ContentProvider() {
-    var db : BDSaudeOpenHelper? = null
+    var dbOpenHelper : BDSaudeOpenHelper? = null
     /**
      * Implement this to initialize your content provider on startup.
      * This method is called for all registered content providers on the
@@ -38,7 +39,7 @@ class ContentProviderSaude : ContentProvider() {
      * @return true if the provider was successfully loaded, false otherwise
      */
     override fun onCreate(): Boolean {
-        db = BDSaudeOpenHelper(context)
+        dbOpenHelper = BDSaudeOpenHelper(context)
 
         return true
     }
@@ -117,9 +118,71 @@ class ContentProviderSaude : ContentProvider() {
         selectionArgs: Array<out String>?,
         sortOrder: String?
     ): Cursor? {
-        TODO("Not yet implemented")
-    }
+        val db = dbOpenHelper!!.readableDatabase
 
+        requireNotNull(projection)
+        val colunas = projection as Array<String>
+
+        val argsSeleccao = selectionArgs as Array<String>?
+
+        val id = uri.lastPathSegment
+
+        val cursor = when (getUriMatcher().match(uri)) {
+            URI_DOUTORES -> TabelaBDDoutores(db).query(
+                colunas,
+                selection,
+                argsSeleccao,
+                null,
+                null,
+                sortOrder
+            )
+            URI_PACIENTES -> TabelaBDPacientes(db).query(
+                colunas,
+                selection,
+                argsSeleccao,
+                null,
+                null,
+                sortOrder
+            )
+            URI_CONSULTAS -> TabelaBDConsultas(db).query(
+                colunas,
+                selection,
+                argsSeleccao,
+                null,
+                null,
+                sortOrder
+            )
+            URI_DOUTOR_ESPECIFICO -> TabelaBDDoutores(db).query(
+                colunas,
+                "${BaseColumns._ID}=?",
+                arrayOf("${id}"),
+                null,
+                null,
+                null
+            )
+            URI_PACIENTE_ESPECIFICO -> TabelaBDPacientes(db).query(
+                colunas,
+                "${BaseColumns._ID}=?",
+                arrayOf("${id}"),
+                null,
+                null,
+                null
+            )
+            URI_CONSULTA_ESPECIFICA -> TabelaBDConsultas(db).query(
+                colunas,
+                "${BaseColumns._ID}=?",
+                arrayOf("${id}"),
+                null,
+                null,
+                null
+            )
+            else -> null
+        }
+
+        db.close()
+
+        return cursor
+    }
     /**
      * Implement this to handle requests for the MIME type of the data at the
      * given URI.  The returned MIME type should start with
