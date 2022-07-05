@@ -3,6 +3,7 @@ package pt.ipg.saude
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
+import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
@@ -38,5 +39,23 @@ class NovoDoutorFragment : Fragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+    fun navegaListaDoutor() {
+        // todo: navegar para a lista de enfermeiro
+    }
+
+    fun guardar() {
+        // todo: guardar enfermeiro
+    }
+
+    fun processaOpcaoMenu(item: MenuItem): Boolean {
+        when (item.itemId) {
+            R.id.action_guardar_novo_doutor -> guardar()
+            R.id.action_cancelar_novo_doutor -> navegaListaDoutor()
+            else -> return false
+        }
+
+        return true
     }
 }
