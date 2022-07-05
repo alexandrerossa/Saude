@@ -15,6 +15,7 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var appBarConfiguration: AppBarConfiguration
     private lateinit var binding: ActivityMainBinding
+    private lateinit var menu: Menu
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -28,11 +29,16 @@ class MainActivity : AppCompatActivity() {
         appBarConfiguration = AppBarConfiguration(navController.graph)
         setupActionBarWithNavController(navController, appBarConfiguration)
 
+        DadosApp.activity = this
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         // Inflate the menu; this adds items to the action bar if it is present.
-        menuInflater.inflate(R.menu.menu_main, menu)
+        menuInflater.inflate(R.menu.menu_lista_doutores, menu)
+
+        this.menu = menu
+        atualizaMenuListaDoutores(false)
+
         return true
     }
 
@@ -50,5 +56,10 @@ class MainActivity : AppCompatActivity() {
         val navController = findNavController(R.id.nav_host_fragment_content_main)
         return navController.navigateUp(appBarConfiguration)
                 || super.onSupportNavigateUp()
+    }
+
+    fun atualizaMenuListaDoutores(mostraBotoesAlterarEliminar : Boolean) {
+        menu.findItem(R.id.action_alterar_doutor).setVisible(mostraBotoesAlterarEliminar)
+        menu.findItem(R.id.action_eliminar_doutor).setVisible(mostraBotoesAlterarEliminar)
     }
 }
