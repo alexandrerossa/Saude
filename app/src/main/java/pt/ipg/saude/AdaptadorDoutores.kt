@@ -4,7 +4,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 
-class AdapterDoutores(var cursor: Cursor? = null) : RecyclerView.Adapter<AdapterDoutores.ViewHolderDoutores>() {
+class AdapterDoutores(val fragment: , var cursor: Cursor? = null) : RecyclerView.Adapter<AdapterDoutores.ViewHolderDoutores>() {
 
     class ViewHolderDoutores(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
@@ -34,7 +34,9 @@ class AdapterDoutores(var cursor: Cursor? = null) : RecyclerView.Adapter<Adapter
      * @see .onBindViewHolder
      */
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolderDoutores {
-        TODO("Not yet implemented")
+        val itemDoutores = fragment.layoutInflater.inflate(R.layout.item_doutores, parent, false)
+
+        return ViewHolderDoutores(itemDoutores)
     }
 
     /**
