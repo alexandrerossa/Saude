@@ -4,6 +4,7 @@
     <!-- Strings used for fragments for navigation -->
     <string name="lista_doutor_fragment_label">Doutor</string>
     <string name="novo_doutor_fragment_label">Novo doutor</string>
+    <string name="edita_doutor_fragment_label">Editar doutor</string>
 
     <string name="novo_doutor">Novo doutor</string>
     <string name="alterar_doutor">Alterar doutor</string>
@@ -19,5 +20,6 @@
     <string name="preencha_dataNascimento">Preencha a data de nascimento</string>
     <string name="preencha_especialidade">Preencha a especialidade</string>
     <string name="erro_inserir_doutor">Erro ao inserir doutor</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 </resources>
