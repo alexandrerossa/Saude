@@ -6,6 +6,8 @@ import android.view.LayoutInflater
 import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
+import android.widget.EditText
+import android.widget.Spinner
 import androidx.navigation.fragment.findNavController
 import pt.ipg.saude.databinding.FragmentNovoDoutorBinding
 
@@ -15,6 +17,10 @@ import pt.ipg.saude.databinding.FragmentNovoDoutorBinding
 class NovoDoutorFragment : Fragment() {
 
     private var _binding: FragmentNovoDoutorBinding? = null
+
+    private lateinit var editTextNome: EditText
+    private lateinit var editTextDataNascimento: EditText
+    private lateinit var editTextEspecialidade: EditText
 
     private val binding get() = _binding!!
 
@@ -33,6 +39,11 @@ class NovoDoutorFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        editTextNome = view.findViewById(R.id.editTextDoutorNome)
+        editTextDataNascimento = view.findViewById(R.id.editTextDoutorDataNascimento)
+        editTextEspecialidade = view.findViewById(R.id.editTextDoutorEspecialidade)
+
 
     }
 
