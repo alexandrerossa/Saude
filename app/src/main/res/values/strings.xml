@@ -12,4 +12,6 @@
     <string name="doutor">Doutor</string>
     <string name="data_de_nascimento">Data de Nascimento</string>
     <string name="especialidade">Especialidade</string>
+    <string name="guardar">Guardar</string>
+    <string name="cancelar">Cancelar</string>
 </resources>
