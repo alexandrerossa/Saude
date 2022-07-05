@@ -6,7 +6,7 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 
-class AdapterDoutores(val fragment: FirstFragment) : RecyclerView.Adapter<AdapterDoutores.ViewHolderDoutores>() {
+class AdaptadorDoutores(val fragment: ListaDoutorFragment) : RecyclerView.Adapter<AdaptadorDoutores.ViewHolderDoutores>() {
 
     public var cursor: Cursor? = null
         get() = field
@@ -15,20 +15,22 @@ class AdapterDoutores(val fragment: FirstFragment) : RecyclerView.Adapter<Adapte
             notifyDataSetChanged()
         }
 
-    class ViewHolderEnfermeiros(itemView: View) : RecyclerView.ViewHolder(itemView), View.OnClickListener {
+    class ViewHolderDoutores(itemView: View) : RecyclerView.ViewHolder(itemView), View.OnClickListener {
 
         private val textViewNomeDoutor = itemView.findViewById<TextView>(R.id.textViewNomeDoutor)
         private val textViewDataNascimento = itemView.findViewById<TextView>(R.id.textViewDataNascimento)
+        private val textViewEspecialidade= itemView.findViewById<TextView>(R.id.textViewEspecialidade)
         private lateinit var doutores: Doutor
         init {
             itemView.setOnClickListener(this)
         }
 
-        fun atualizaEnfermeiros(doutores: Doutor) {
+        fun atualizaDoutores(doutores: Doutor) {
             this.doutores = doutores
 
             textViewNomeDoutor.text = doutores.nome_doutor
             textViewDataNascimento.text = doutores.dataNascimento.toString()
+            textViewEspecialidade.text = doutores.especialidade.toString()
         }
 
         /**
@@ -54,7 +56,7 @@ class AdapterDoutores(val fragment: FirstFragment) : RecyclerView.Adapter<Adapte
         }
 
         companion object {
-            var selecionado : ViewHolderDoutores = null
+            var selecionado : ViewHolderDoutores? = null
         }
 
     }

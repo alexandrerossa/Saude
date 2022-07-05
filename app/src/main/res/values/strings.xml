@@ -12,4 +12,8 @@
     <string name="novo_doutor">Novo doutor</string>
     <string name="alterar_doutor">Alterar doutor</string>
     <string name="eliminar_doutor">Eliminar doutor</string>
+    <string name="titulo">Título</string>
+    <string name="doutor">Doutor</string>
+    <string name="data_de_nascimento">Data de Nascimento</string>
+    <string name="especialidade">Especialidade</string>
 </resources>
