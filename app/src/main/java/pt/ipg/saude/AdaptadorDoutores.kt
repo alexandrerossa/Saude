@@ -6,7 +6,7 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 
-class AdapterDoutores(val fragment: ) : RecyclerView.Adapter<AdapterDoutores.ViewHolderDoutores>() {
+class AdapterDoutores(val fragment: FirstFragment) : RecyclerView.Adapter<AdapterDoutores.ViewHolderDoutores>() {
 
     public var cursor: Cursor? = null
         get() = field
@@ -15,15 +15,42 @@ class AdapterDoutores(val fragment: ) : RecyclerView.Adapter<AdapterDoutores.Vie
             notifyDataSetChanged()
         }
 
+    class ViewHolderEnfermeiros(itemView: View) : RecyclerView.ViewHolder(itemView), View.OnClickListener {
 
-    class ViewHolderDoutores(itemView: View) : RecyclerView.ViewHolder(itemView) {
-
-        private val textViewNomeDoutores = itemView.findViewById<TextView>(R.id.textViewNomeDoutor)
+        private val textViewNomeDoutor = itemView.findViewById<TextView>(R.id.textViewNomeDoutor)
         private val textViewDataNascimento = itemView.findViewById<TextView>(R.id.textViewDataNascimento)
 
-        fun atualizaDoutores(doutores:Doutor) {
-            textViewNomeDoutores.text = doutores.nome_doutor
+        init {
+            itemView.setOnClickListener(this)
+        }
+
+        fun atualizaEnfermeiros(doutores: Doutor) {
+            textViewNomeDoutor.text = doutores.nome_doutor
             textViewDataNascimento.text = doutores.dataNascimento.toString()
+        }
+
+        /**
+         * Called when a view has been clicked.
+         *
+         * @param v The view that was clicked.
+         */
+        override fun onClick(v: View?) {
+            selecionado?.desSeleciona()
+            seleciona()
+        }
+
+        private fun seleciona() {
+            selecionado = this
+            itemView.setBackgroundResource(R.color.cor_selecao)
+        }
+
+        private fun desSeleciona() {
+            selecionado = null
+            itemView.setBackgroundResource(android.R.color.white)
+        }
+
+        companion object {
+            var selecionado : ViewHolderDoutores = null
         }
 
     }
@@ -90,6 +117,7 @@ class AdapterDoutores(val fragment: ) : RecyclerView.Adapter<AdapterDoutores.Vie
      */
     override fun getItemCount(): Int {
         return cursor?.count ?: 0
+
     }
 
 }
