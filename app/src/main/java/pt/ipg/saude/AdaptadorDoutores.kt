@@ -2,11 +2,20 @@ package pt.ipg.saude
 
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 
 class AdapterDoutores(val fragment: , var cursor: Cursor? = null) : RecyclerView.Adapter<AdapterDoutores.ViewHolderDoutores>() {
 
     class ViewHolderDoutores(itemView: View) : RecyclerView.ViewHolder(itemView) {
+
+        private val textViewNomeDoutores = itemView.findViewById<TextView>(R.id.textViewNomeDoutor)
+        private val textViewDataNascimento = itemView.findViewById<TextView>(R.id.textViewDataNascimento)
+
+        fun atualizaDoutores(doutores:Doutor) {
+            textViewNomeDoutores.text = doutores.nome_doutor
+            textViewDataNascimento.text = doutores.dataNascimento.toString()
+        }
 
     }
 
@@ -61,7 +70,8 @@ class AdapterDoutores(val fragment: , var cursor: Cursor? = null) : RecyclerView
      * @param position The position of the item within the adapter's data set.
      */
     override fun onBindViewHolder(holder: ViewHolderDoutores, position: Int) {
-        TODO("Not yet implemented")
+        cursor!!.moveToPosition(position)
+        holder.atualizaDoutores(Doutor.fromCursor(cursor!!))
     }
 
     /**
