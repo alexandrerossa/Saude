@@ -19,12 +19,14 @@ class AdapterDoutores(val fragment: FirstFragment) : RecyclerView.Adapter<Adapte
 
         private val textViewNomeDoutor = itemView.findViewById<TextView>(R.id.textViewNomeDoutor)
         private val textViewDataNascimento = itemView.findViewById<TextView>(R.id.textViewDataNascimento)
-
+        private lateinit var doutores: Doutor
         init {
             itemView.setOnClickListener(this)
         }
 
         fun atualizaEnfermeiros(doutores: Doutor) {
+            this.doutores = doutores
+
             textViewNomeDoutor.text = doutores.nome_doutor
             textViewDataNascimento.text = doutores.dataNascimento.toString()
         }
@@ -42,6 +44,7 @@ class AdapterDoutores(val fragment: FirstFragment) : RecyclerView.Adapter<Adapte
         private fun seleciona() {
             selecionado = this
             itemView.setBackgroundResource(R.color.cor_selecao)
+            DadosApp.doutorSelecionado = doutores
         }
 
         private fun desSeleciona() {
