@@ -3,10 +3,9 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/Informatica/Cadeiras/Programacao_Avancada/2022/Saude/app/src/main/res/layout/activity_main.xml" value="0.1" />
-        <entry key="..\:/Informatica/Cadeiras/Programacao_Avancada/2022/Saude/app/src/main/res/layout/content_main.xml" value="0.1" />
-        <entry key="..\:/Informatica/Cadeiras/Programacao_Avancada/2022/Saude/app/src/main/res/layout/fragment_first.xml" value="0.18489583333333334" />
-        <entry key="..\:/Informatica/Cadeiras/Programacao_Avancada/2022/Saude/app/src/main/res/layout/fragment_second.xml" value="0.18489583333333334" />
+        <entry key="..\:/Informatica/Cadeiras/Programacao_Avancada/2022/Saude/app/src/main/res/layout/activity_main.xml" value="0.11614583333333334" />
+        <entry key="..\:/Informatica/Cadeiras/Programacao_Avancada/2022/Saude/app/src/main/res/layout/item_doutores.xml" value="0.3697916666666667" />
+        <entry key="..\:/Informatica/Cadeiras/Programacao_Avancada/2022/Saude/app/src/main/res/menu/menu_lista_doutores.xml" value="0.190625" />
       </map>
     </option>
   </component>
