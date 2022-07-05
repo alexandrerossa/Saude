@@ -139,9 +139,16 @@ class ContentProviderSaude : ContentProvider() {
      * @param uri the URI to query.
      * @return a MIME type string, or `null` if there is no type.
      */
-    override fun getType(uri: Uri): String? {
-        TODO("Not yet implemented")
-    }
+    override fun getType(uri: Uri): String? =
+        when (getUriMatcher().match(uri)) {
+            URI_DOUTORES -> "$MULTIPLOS_REGISTOS/${TabelaBDDoutores.NOME}"
+            URI_PACIENTES -> "$MULTIPLOS_REGISTOS/${TabelaBDPacientes.NOME}"
+            URI_CONSULTAS -> "$MULTIPLOS_REGISTOS/${TabelaBDConsultas.NOME}"
+            URI_DOUTOR_ESPECIFICO -> "$UNICO_REGISTO/${TabelaBDDoutores.NOME}"
+            URI_PACIENTE_ESPECIFICO -> "$UNICO_REGISTO/${TabelaBDPacientes.NOME}"
+            URI_CONSULTA_ESPECIFICA -> "$UNICO_REGISTO/${TabelaBDConsultas.NOME}"
+            else -> null
+        }
 
     /**
      * Implement this to handle requests to insert a new row. As a courtesy,
@@ -219,6 +226,9 @@ class ContentProviderSaude : ContentProvider() {
         const val URI_PACIENTE_ESPECIFICO = 201
         const val URI_CONSULTAS = 300
         const val URI_CONSULTA_ESPECIFICA = 301
+
+        const val UNICO_REGISTO = "vnd.android.cursor.item"
+        const val MULTIPLOS_REGISTOS = "vnd.android.cursor.dir"
 
         fun getUriMatcher() : UriMatcher {
             var uriMatcher = UriMatcher(UriMatcher.NO_MATCH)
