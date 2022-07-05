@@ -33,7 +33,7 @@ class ListaDoutorFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor> {
         savedInstanceState: Bundle?
     ): View? {
         DadosApp.listaDoutorFragment = this
-
+        (activity as MainActivity).menuAtual = R.menu.menu_lista_doutores
         _binding = FragmentListaDoutorBinding.inflate(inflater, container, false)
         return binding.root
 

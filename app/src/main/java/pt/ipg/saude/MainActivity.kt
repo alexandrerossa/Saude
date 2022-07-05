@@ -17,6 +17,12 @@ class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
     private lateinit var menu: Menu
 
+    var menuAtual = R.menu.menu_lista_doutores
+        set(value) {
+            field = value
+            invalidateOptionsMenu()
+        }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -43,8 +49,9 @@ class MainActivity : AppCompatActivity() {
         menuInflater.inflate(R.menu.menu_lista_doutores, menu)
 
         this.menu = menu
-        atualizaMenuListaDoutores(false)
-
+        if (menuAtual == R.menu.menu_lista_doutores) {
+            atualizaMenuListaDoutores(false)
+        }
         return true
     }
 
@@ -55,7 +62,7 @@ class MainActivity : AppCompatActivity() {
         return when (item.itemId) {
             R.id.action_settings -> true
             else ->  {
-                if (DadosApp.listaDoutorFragment.processaOpcaoMenu(item)) {
+                if (DadosApp.listaDoutorFragment!!.processaOpcaoMenu(item)) {
                     return true
                 } else {
                     return super.onOptionsItemSelected(item)
