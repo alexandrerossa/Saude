@@ -6,13 +6,13 @@
     app:startDestination="@id/ListaDoutorFragment">
 
     <fragment
-        android:id="@+id/FirstFragment"
+        android:id="@+id/ListaDoutorFragment"
         android:name="pt.ipg.saude.ListaDoutorFragment"
         android:label="@string/lista_doutor_fragment_label"
         tools:layout="@layout/fragment_lista_doutor">
 
         <action
-            android:id="@+id/action_FirstFragment_to_SecondFragment"
+            android:id="@+id/action_ListaDoutorFragment_toNovoDoutorFragment"
             app:destination="@id/NovoDoutorFragment" />
     </fragment>
     <fragment

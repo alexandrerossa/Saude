@@ -29,6 +29,12 @@ class MainActivity : AppCompatActivity() {
         appBarConfiguration = AppBarConfiguration(navController.graph)
         setupActionBarWithNavController(navController, appBarConfiguration)
 
+        binding.fab.setOnClickListener { view ->
+            Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+                .setAction("Action", null).show()
+        }
+
+
         DadosApp.activity = this
     }
 
@@ -48,7 +54,13 @@ class MainActivity : AppCompatActivity() {
         // as you specify a parent activity in AndroidManifest.xml.
         return when (item.itemId) {
             R.id.action_settings -> true
-            else -> super.onOptionsItemSelected(item)
+            else ->  {
+                if (DadosApp.listaDoutorFragment.processaOpcaoMenu(item)) {
+                    return true
+                } else {
+                    return super.onOptionsItemSelected(item)
+                }
+            }
         }
     }
 
