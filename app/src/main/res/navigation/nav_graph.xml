@@ -3,26 +3,26 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/FirstFragment">
+    app:startDestination="@id/ListaDoutorFragment">
 
     <fragment
         android:id="@+id/FirstFragment"
         android:name="pt.ipg.saude.ListaDoutorFragment"
-        android:label="@string/first_fragment_label"
+        android:label="@string/lista_doutor_fragment_label"
         tools:layout="@layout/fragment_lista_doutor">
 
         <action
             android:id="@+id/action_FirstFragment_to_SecondFragment"
-            app:destination="@id/SecondFragment" />
+            app:destination="@id/NovoDoutorFragment" />
     </fragment>
     <fragment
-        android:id="@+id/SecondFragment"
+        android:id="@+id/NovoDoutorFragment"
         android:name="pt.ipg.saude.NovoDoutorFragment"
-        android:label="@string/second_fragment_label"
+        android:label="@string/novo_doutor_fragment_label"
         tools:layout="@layout/fragment_novo_doutor">
 
         <action
             android:id="@+id/action_SecondFragment_to_FirstFragment"
-            app:destination="@id/FirstFragment" />
+            app:destination="@id/ListaDoutorFragment" />
     </fragment>
 </navigation>

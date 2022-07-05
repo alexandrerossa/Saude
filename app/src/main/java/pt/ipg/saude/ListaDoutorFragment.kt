@@ -12,7 +12,7 @@ import androidx.loader.content.Loader
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import pt.ipg.saude.databinding.FragmentFirstBinding
+import pt.ipg.saude.databinding.FragmentListaDoutorBinding
 import pt.ipg.saude.ContentProviderSaude
 
 /**
@@ -20,7 +20,7 @@ import pt.ipg.saude.ContentProviderSaude
  */
 class ListaDoutorFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor> {
 
-    private var _binding: FragmentFirstBinding? = null
+    private var _binding: FragmentListaDoutorBinding? = null
     private var adaptadorDoutores : AdaptadorDoutores? = null
 
     // This property is only valid between onCreateView and
@@ -32,7 +32,7 @@ class ListaDoutorFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor> {
         savedInstanceState: Bundle?
     ): View? {
 
-        _binding = FragmentFirstBinding.inflate(inflater, container, false)
+        _binding = FragmentListaDoutorBinding.inflate(inflater, container, false)
         return binding.root
 
     }
@@ -47,6 +47,10 @@ class ListaDoutorFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor> {
 
         LoaderManager.getInstance(this)
             .initLoader(ID_LOADER_MANAGER_DOUTOR, null, this)
+
+        fun navegaNovoDoutor() {
+            findNavController().navigate(R.id.action_ListaDoutorFragment_to_NovoDoutorFragment)
+        }
     }
 
     override fun onDestroyView() {

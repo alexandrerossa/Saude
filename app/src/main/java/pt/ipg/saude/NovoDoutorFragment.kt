@@ -6,14 +6,14 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
-import pt.ipg.saude.databinding.FragmentSecondBinding
+import pt.ipg.saude.databinding.FragmentNovoDoutorBinding
 
 /**
  * A simple [Fragment] subclass as the second destination in the navigation.
  */
 class NovoDoutorFragment : Fragment() {
 
-    private var _binding: FragmentSecondBinding? = null
+    private var _binding: FragmentNovoDoutorBinding? = null
 
     private val binding get() = _binding!!
 
@@ -22,7 +22,7 @@ class NovoDoutorFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
 
-        _binding = FragmentSecondBinding.inflate(inflater, container, false)
+        _binding = FragmentNovoDoutorBinding.inflate(inflater, container, false)
         return binding.root
 
     }
@@ -30,9 +30,6 @@ class NovoDoutorFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.buttonSecond.setOnClickListener {
-            findNavController().navigate(R.id.action_SecondFragment_to_FirstFragment)
-        }
     }
 
     override fun onDestroyView() {
