@@ -15,4 +15,9 @@
     <string name="guardar">Guardar</string>
     <string name="cancelar">Cancelar</string>
     <string name="versao">Doutores v. 1.0</string>
+    <string name="preencha_nome">Preencha o nome</string>
+    <string name="preencha_dataNascimento">Preencha a data de nascimento</string>
+    <string name="preencha_especialidade">Preencha a especialidade</string>
+    <string name="erro_inserir_doutor">Erro ao inserir doutor</string>
+
 </resources>

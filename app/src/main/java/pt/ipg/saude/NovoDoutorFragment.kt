@@ -9,7 +9,9 @@ import android.view.ViewGroup
 import android.widget.EditText
 import android.widget.Spinner
 import androidx.navigation.fragment.findNavController
+import com.google.android.material.snackbar.Snackbar
 import pt.ipg.saude.databinding.FragmentNovoDoutorBinding
+import pt.ipg.saude.ContentProviderSaude
 
 /**
  * A simple [Fragment] subclass as the second destination in the navigation.
@@ -57,7 +59,42 @@ class NovoDoutorFragment : Fragment() {
     }
 
     fun guardar() {
-        // todo: guardar enfermeiro
+        val nomeDoutor = editTextNome.text.toString()
+        if (nomeDoutor.isEmpty()) {
+            editTextNome.setError(getString(R.string.preencha_nome))
+            return
+        }
+
+        val dataNascimentoDoutor = editTextDataNascimento.text.toString()
+        if (dataNascimentoDoutor.isEmpty()) {
+            editTextDataNascimento.setError(getString(R.string.preencha_dataNascimento))
+            return
+        }
+
+        val especialidadeDoutor = editTextEspecialidade.text.toString()
+        if (especialidadeDoutor.isEmpty()) {
+            editTextEspecialidade.setError(getString(R.string.preencha_especialidade))
+            return
+        }
+
+
+        val doutor = Doutor(nome_doutor = nomeDoutor, dataNascimento = dataNascimentoDoutor, especialidade = especialidadeDoutor)
+
+        val uri = activity?.contentResolver?.insert(
+            ContentProviderSaude.TABELA_DOUTOR_PATH,
+            doutor.toContentValues()
+        )
+
+        if (uri == null) {
+            Snackbar.make(
+                editTextNome,
+                getString(R.string.erro_inserir_doutor),
+                Snackbar.LENGTH_LONG
+            ).show()
+            return
+        }
+
+        navegaListaDoutor()
     }
 
     fun processaOpcaoMenu(item: MenuItem): Boolean {
