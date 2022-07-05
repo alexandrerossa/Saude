@@ -42,7 +42,7 @@ class NovoDoutorFragment : Fragment() {
     }
 
     fun navegaListaDoutor() {
-        // todo: navegar para a lista de enfermeiro
+        findNavController().navigate(R.id.action_ListaDoutorFragment_toNovoDoutorFragment)
     }
 
     fun guardar() {
