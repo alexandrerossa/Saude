@@ -85,13 +85,13 @@ import com.google.android.material.snackbar.Snackbar
         doutor.dataNascimento = dataNascimento
         doutor.especialidade = especialidade
 
-        val uriCovid = Uri.withAppendedPath(
+        val uriSaude= Uri.withAppendedPath(
             ContentProviderSaude.TABELA_DOUTOR_PATH,
             doutor.id.toString()
         )
 
         val registos = activity?.contentResolver?.update(
-            uriCovid,
+            uriSaude,
             doutor.toContentValues(),
             null,
             null
