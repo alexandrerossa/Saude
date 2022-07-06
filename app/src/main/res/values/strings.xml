@@ -16,6 +16,12 @@
     <string name="novo_doutor">Novo doutor</string>
     <string name="alterar_doutor">Alterar doutor</string>
     <string name="eliminar_doutor">Eliminar doutor</string>
+
+    <string name="nova_consulta">Nova Consulta</string>
+    <string name="alterar_consulta">Alterar Consulta</string>
+    <string name="eliminar_consulta">Eliminar Consulta</string>
+
+
     <string name="titulo">Título</string>
     <string name="doutor">Nome</string>
     <string name="data_de_nascimento">Data de Nascimento</string>

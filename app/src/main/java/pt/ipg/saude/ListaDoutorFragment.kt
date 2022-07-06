@@ -58,7 +58,7 @@ class ListaDoutorFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor> {
         }
 
         fun navegaEliminarDoutor() {
-            //findNavController().navigate(R.id.action_ListaDoutorFragment_toNovoDoutorFragment)
+            findNavController().navigate(R.id.action_ListaDoutorFragment_toNovoDoutorFragment)
         }
 
         fun processaOpcaoMenu(item: MenuItem): Boolean {

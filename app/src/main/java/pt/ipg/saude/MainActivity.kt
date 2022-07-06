@@ -67,6 +67,9 @@ class MainActivity : AppCompatActivity() {
                 R.menu.menu_edita_doutor -> (DadosApp.fragment as EditaDoutorFragment).processaOpcaoMenu(item)
                 R.menu.menu_elimina_doutor -> (DadosApp.fragment as EliminaDoutorFragment).processaOpcaoMenu(item)
                 R.menu.menu_lista_consultas -> (DadosApp.fragment as ListaConsultasFragment).processaOpcaoMenu(item)
+                R.menu.menu_nova_consulta -> (DadosApp.fragment as NovaConsultaFragment).processaOpcaoMenu(item)
+                R.menu.menu_edita_consulta -> (DadosApp.fragment as EditaCuidadosFragment).processaOpcaoMenu(item)
+                R.menu.menu_elimina_consulta -> (DadosApp.fragment as EliminaCuidadoFragment).processaOpcaoMenu(item)
                 else -> false
             }
         }

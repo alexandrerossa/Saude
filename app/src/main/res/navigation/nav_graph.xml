@@ -24,11 +24,11 @@
     <fragment
         android:id="@+id/NovoDoutorFragment"
         android:name="pt.ipg.saude.NovoDoutorFragment"
-        android:label="@string/novo_doutor"
-        tools:layout="@layout/fragment_novo_doutor">
+        android:label="@string/nova_doutor"
+        tools:layout="@layout/fragment_nova_doutor">
 
         <action
-            android:id="@+id/action_novoDoutorFragment_to_ListaDoutorFragment"
+            android:id="@+id/action_novaDoutorFragment_to_ListaDoutorFragment"
             app:destination="@id/ListaDoutorFragment" />
     </fragment>
     <fragment
@@ -53,5 +53,57 @@
         android:id="@+id/listaConsultasFragment"
         android:name="pt.ipg.covid.ListaConsultasFragment"
         android:label="fragment_lista_consultas"
-        tools:layout="@layout/fragment_lista_consultas" />
+        tools:layout="@layout/fragment_lista_consultas" >
+        <action
+            android:id="@+id/action_listaConsultasFragment_to_novaConsultaFragment"
+            app:destination="@id/novaConsultaFragment" />
+        <action
+            android:id="@+id/action_listaConsultasFragment_to_editaConsultasFragment"
+            app:destination="@id/editaConsultasFragment" />
+        <action
+            android:id="@+id/action_listaConsultasFragment_to_eliminaConsultaFragment"
+            app:destination="@id/eliminaConsultaFragment" />
+        <action
+            android:id="@+id/action_listaConsultasFragment_to_mainPage"
+            app:destination="@id/mainPage" />
+    </fragment>
+    <fragment
+        android:id="@+id/novaConsultaFragment"
+        android:name="pt.ipg.covid.NovoConsultaFragment"
+        android:label="fragment_nova_consulta"
+        tools:layout="@layout/fragment_nova_consulta" >
+        <action
+            android:id="@+id/action_novaConsultaFragment_to_listaConsultasFragment"
+            app:destination="@id/listaConsultasFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/mainPage"
+        android:name="pt.ipg.covid.MainPage"
+        android:label="MainPage"
+        tools:layout="@layout/fragment_main_activity">
+        <action
+            android:id="@+id/action_mainPage_to_ListadoutorFragment"
+            app:destination="@id/ListadoutorFragment" />
+        <action
+            android:id="@+id/action_mainPage_to_listaConsultasFragment"
+            app:destination="@id/listaConsultasFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/editaConsultasFragment"
+        android:name="pt.ipg.covid.EditaConsultasFragment"
+        android:label="fragment_edita_consultas"
+        tools:layout="@layout/fragment_edita_consultas" >
+        <action
+            android:id="@+id/action_editaConsultasFragment_to_listaConsultasFragment"
+            app:destination="@id/listaConsultasFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/eliminaConsultaFragment"
+        android:name="pt.ipg.covid.EliminaConsultaFragment"
+        android:label="fragment_elimina_consulta"
+        tools:layout="@layout/fragment_elimina_consulta" >
+        <action
+            android:id="@+id/action_eliminaConsultaFragment_to_listaConsultasFragment"
+            app:destination="@id/listaConsultasFragment" />
+    </fragment>
 </navigation>

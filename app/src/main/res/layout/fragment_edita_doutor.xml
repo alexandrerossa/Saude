@@ -11,7 +11,7 @@
         android:layout_height="match_parent" />
 
     <com.google.android.material.textfield.TextInputEditText
-        android:id="@+id/editTextDoutorEditaome"
+        android:id="@+id/editTextDoutorEditaNome"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="@string/doutor"
@@ -38,21 +38,6 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/margem_campo"
         android:hint="@string/especialidade"/>
-
-
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/margem_campo"
-        android:text="@string/consultas" />
-
-    <Spinner
-        android:id="@+id/spinnerCategorias"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/margem_campo" />
 
 
     </LinearLayout>
