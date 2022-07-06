@@ -59,7 +59,7 @@ class ListaDoutorFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor> {
         }
 
         fun navegaEliminarDoutor() {
-            //todo: navegar para o fragmento para confirmar eliminação de um enfermeiro
+            findNavController().navigate(R.id.action_ListaDoutorFragment_toNovoDoutorFragment)
         }
 
         fun processaOpcaoMenu(item: MenuItem): Boolean {

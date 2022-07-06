@@ -5,6 +5,7 @@
     <string name="lista_doutor_fragment_label">Doutor</string>
     <string name="novo_doutor_fragment_label">Novo doutor</string>
     <string name="edita_doutor_fragment_label">Editar doutor</string>
+    <string name="elimina_doutor_fragment_label">Eliminar doutor?</string>
 
     <string name="novo_doutor">Novo doutor</string>
     <string name="alterar_doutor">Alterar doutor</string>
