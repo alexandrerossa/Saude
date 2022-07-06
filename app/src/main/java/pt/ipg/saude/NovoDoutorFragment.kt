@@ -30,7 +30,7 @@ class NovoDoutorFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        DadosApp.novoDoutorFragment = this
+        DadosApp.fragment = this
         (activity as MainActivity).menuAtual = R.menu.menu_novo_doutor
 
 

@@ -51,7 +51,7 @@ class ListaDoutorFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor> {
             .initLoader(ID_LOADER_MANAGER_DOUTOR, null, this)
 
         fun navegaNovoDoutor() {
-            findNavController().navigate(R.id.action_ListaDoutorFragment_to_NovoDoutorFragment)
+            findNavController().navigate(R.id.action_ListaDoutorFragment_toNovoDoutorFragment)
         }
 
         fun navegaAlterarDoutor() {
