@@ -70,6 +70,7 @@ class MainActivity : AppCompatActivity() {
                 R.menu.menu_lista_doutores -> (DadosApp.fragment as ListaDoutorFragment).processaOpcaoMenu(item)
                 R.menu.menu_novo_doutor -> (DadosApp.fragment as NovoDoutorFragment).processaOpcaoMenu(item)
                 R.menu.menu_edita_doutor -> (DadosApp.fragment as EditaDoutorFragment).processaOpcaoMenu(item)
+                R.menu.menu_elimina_doutor -> (DadosApp.fragment as EliminaDoutorFragment).processaOpcaoMenu(item)
                 else -> false
             }
         }

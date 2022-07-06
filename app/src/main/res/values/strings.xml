@@ -25,6 +25,8 @@
     <string name="erro_alterar_doutor">Erro ao alterar doutor</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="doutor_guardado_sucesso">Doutor guardado com sucesso</string>
+    <string name="erro_eliminar_doutor">Erro ao eliminar doutor</string>
+    <string name="doutor_eliminado_sucesso">Doutor eliminado com sucesso</string>
 
 
 </resources>
