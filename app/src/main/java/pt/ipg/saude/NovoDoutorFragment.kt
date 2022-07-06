@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.EditText
 import android.widget.Spinner
+import android.widget.Toast
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.snackbar.Snackbar
 import pt.ipg.saude.databinding.FragmentNovoDoutorBinding
@@ -97,6 +98,11 @@ class NovoDoutorFragment : Fragment() {
             return
         }
 
+        Toast.makeText(
+            requireContext(),
+            R.string.doutor_guardado_sucesso,
+            Toast.LENGTH_LONG
+        ).show()
         navegaListaDoutor()
     }
 

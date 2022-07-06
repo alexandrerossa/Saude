@@ -7,51 +7,135 @@ import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.navArgument
+import android.database.Cursor
+import android.net.Uri
+import android.widget.EditText
+import android.widget.SimpleCursorAdapter
+import android.widget.Spinner
+import android.widget.Toast
+import androidx.loader.app.LoaderManager
+import androidx.loader.content.CursorLoader
+import androidx.loader.content.Loader
+import androidx.navigation.fragment.findNavController
+import com.google.android.material.snackbar.Snackbar
 
 private const val ARG_PARAM1 = "param1"
 private const val ARG_PARAM2 = "param2"
 
-class EditaDoutorFragment {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
+class EditaDoutorFragment : Fragment(),LoaderManager.LoaderCallbacks<Cursor> {
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
-    }
+    private lateinit var editTextNome: EditText
+    private lateinit var editTextDataNascimento: EditText
+    private lateinit var editTextEspecialidade: EditText
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_edita_doutor, container, false)
+        ): View? {
+            DadosApp.fragment = this
+            (activity as MainActivity).menuAtual = R.menu.menu_edita_doutor
+
+            return inflater.inflate(R.layout.fragment_edita_doutor, container, false)
+
+        }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        editTextNome = view.findViewById(R.id.editTextDoutorNome)
+        editTextDataNascimento = view.findViewById(R.id.editTextDoutorDataNascimento)
+        editTextEspecialidade = view.findViewById(R.id.editTextDoutorEspecialidade)
+
+        LoaderManager.getInstance(this)
+            .initLoader(ID_LOADER_MANAGER_CATEGORIAS, null, this)
     }
 
-    fun processaOpcaoMenu(item: MenuItem): Boolean {
-        return false
+    fun navegaListaDoutor() {
+        findNavController().navigate(R.id.action_editaDoutorFragment_to_listaDoutoresFragment)
     }
+
+    fun guardar() {
+        val nome = editTextNome.text.toString()
+        if (nome.isEmpty()) {
+            editTextNome.setError(getString(R.string.preencha_nome))
+            editTextNome.requestFocus()
+            return
+        }
+
+        val idade = editTextDataNascimento.text.toString()
+        if (idade.isEmpty()) {
+            editTextDataNascimento.setError(getString(R.string.preencha_dataNascimento))
+            editTextDataNascimento.requestFocus()
+            return
+        }
+
+        val sexo = editTextEspecialidade.text.toString()
+        if (sexo.isEmpty()) {
+            editTextEspecialidade.setError(getString(R.string.preencha_especialidade))
+            editTextEspecialidade.requestFocus()
+            return
+        }
+
+
+
+        val doutor = DadosApp.doutorSelecionado!!
+        doutor.nome_doutor = nome
+        doutor.dataNascimento = dataNascimento
+        doutor.especialidade = especialidade
+
+        val uriCovid = Uri.withAppendedPath(
+            ContentProviderSaude.TABELA_DOUTOR_PATH,
+            doutor.id.toString()
+        )
+
+        val registos = activity?.contentResolver?.update(
+            uriCovid,
+            doutor.toContentValues(),
+            null,
+            null
+        )
+
+        if (registos != 1) {
+            Toast.makeText(
+                requireContext(),
+                R.string.erro_alterar_doutor,
+                Toast.LENGTH_LONG
+            ).show()
+            return
+        }
+
+        Toast.makeText(
+            requireContext(),
+            R.string.doutor_guardado_sucesso,
+            Toast.LENGTH_LONG
+        ).show()
+        navegaListaDoutor()
+    }
+
+
+
+    fun processaOpcaoMenu(item: MenuItem): Boolean {
+        when (item.itemId) {
+            R.id.action_guardar_novo_doutor -> guardar()
+            R.id.action_cancelar_novo_doutor -> navegaListaDoutor()
+            else -> return false
+        }
+
+        return true
+    }
+
+    override fun onCreateLoader(id: Int, args: Bundle?): Loader<Cursor> {
+        return CursorLoader(
+            requireContext(),
+            ContentProviderSaude.TABELA_DOUTOR_PATH,
+            TabelaBDConsultas.TODAS_COLUNAS,
+            null, null,
+            TabelaBDDoutores.CAMPO_NOME_DOUTOR,
+
+            )
+    }
+
     companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment EditaLivroFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            EditaDoutorFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
-            }
+        const val ID_LOADER_MANAGER_CATEGORIAS = 0
     }
 }

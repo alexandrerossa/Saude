@@ -21,6 +21,9 @@
     <string name="preencha_dataNascimento">Preencha a data de nascimento</string>
     <string name="preencha_especialidade">Preencha a especialidade</string>
     <string name="erro_inserir_doutor">Erro ao inserir doutor</string>
+    <string name="erro_alterar_doutor">Erro ao alterar doutor</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="doutor_guardado_sucesso">Doutor guardado com sucesso</string>
+
 
 </resources>

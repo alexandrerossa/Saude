@@ -4,10 +4,10 @@ import android.content.ContentProvider
 import android.content.ContentValues
 import android.content.UriMatcher
 import android.database.Cursor
-import android.database.sqlite.SQLiteOpenHelper
 import android.net.Uri
 import android.provider.BaseColumns
 import pt.ipg.saude.*
+import kotlin.math.E
 
 class ContentProviderSaude : ContentProvider() {
     var dbOpenHelper : BDSaudeOpenHelper? = null
@@ -326,6 +326,10 @@ class ContentProviderSaude : ContentProvider() {
     companion object {
         const val AUTHORITY = "pt.ipg.saude"
 
+        const val DOUTOR = "doutor"
+        const val PACIENTE = "paciente"
+        const val CONSULTA = "consulta"
+
         const val URI_DOUTORES = 100
         const val URI_DOUTOR_ESPECIFICO = 101
         const val URI_PACIENTES = 200
@@ -335,6 +339,12 @@ class ContentProviderSaude : ContentProvider() {
 
         const val UNICO_REGISTO = "vnd.android.cursor.item"
         const val MULTIPLOS_REGISTOS = "vnd.android.cursor.dir"
+
+        private val MAIN_PATH = Uri.parse("content://$AUTHORITY")
+        val TABELA_DOUTOR_PATH = Uri.withAppendedPath(MAIN_PATH, DOUTOR)
+        val TABELA_PACIENTE_PATH = Uri.withAppendedPath(MAIN_PATH, PACIENTE)
+        val TABELA_CONSULTA_PATH = Uri.withAppendedPath(MAIN_PATH, CONSULTA)
+
 
         fun getUriMatcher() : UriMatcher {
             var uriMatcher = UriMatcher(UriMatcher.NO_MATCH)
