@@ -6,7 +6,7 @@
     android:orientation="vertical">
 
     <TextView
-        android:id="@+id/textViewNomeDoutor"
+        android:id="@+id/textViewDoutorEliminaNome"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/margem_campo"
@@ -18,7 +18,7 @@
         tools:text="Tiago" />
 
     <TextView
-        android:id="@+id/textViewDataNascimento"
+        android:id="@+id/textViewEliminaDataNascimento"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/margem_campo"
@@ -26,7 +26,7 @@
         tools:text="27-02-2000" />
 
     <TextView
-        android:id="@+id/textViewEspecialidade"
+        android:id="@+id/textViewEliminaEspecialidade"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/margem_campo"

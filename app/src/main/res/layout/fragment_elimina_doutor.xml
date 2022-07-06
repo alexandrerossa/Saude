@@ -20,7 +20,7 @@
         android:textColor="@color/cor_prime" />
 
     <TextView
-        android:id="@+id/textViewNomeDoutor"
+        android:id="@+id/textViewDoutorEliminaNome"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/margem_ecra"
@@ -45,7 +45,7 @@
         android:textColor="@color/cor_prime" />
 
     <TextView
-        android:id="@+id/textViewDataNascimento"
+        android:id="@+id/textViewDoutorEliminaDataNascimento"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/margem_ecra"
@@ -70,7 +70,7 @@
         android:textColor="@color/cor_prime" />
 
     <TextView
-        android:id="@+id/textViewEspecialidade"
+        android:id="@+id/textViewEliminaEspecialidade"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/margem_ecra"
