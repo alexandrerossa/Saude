@@ -55,7 +55,7 @@ class ListaDoutorFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor> {
         }
 
         fun navegaAlterarDoutor() {
-            //todo: navegar para o fragmento da edição de um enfermeiro
+            findNavController().navigate(R.id.action_ListaDoutorFragment_toNovoDoutorFragment)
         }
 
         fun navegaEliminarDoutor() {
