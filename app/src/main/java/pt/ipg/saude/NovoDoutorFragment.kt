@@ -62,18 +62,21 @@ class NovoDoutorFragment : Fragment() {
         val nomeDoutor = editTextNome.text.toString()
         if (nomeDoutor.isEmpty()) {
             editTextNome.setError(getString(R.string.preencha_nome))
+            editTextNome.requestFocus()
             return
         }
 
         val dataNascimentoDoutor = editTextDataNascimento.text.toString()
         if (dataNascimentoDoutor.isEmpty()) {
             editTextDataNascimento.setError(getString(R.string.preencha_dataNascimento))
+            editTextDataNascimento.requestFocus()
             return
         }
 
         val especialidadeDoutor = editTextEspecialidade.text.toString()
         if (especialidadeDoutor.isEmpty()) {
             editTextEspecialidade.setError(getString(R.string.preencha_especialidade))
+            editTextEspecialidade.requestFocus()
             return
         }
 
