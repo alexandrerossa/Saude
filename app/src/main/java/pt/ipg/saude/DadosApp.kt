@@ -9,5 +9,6 @@ class DadosApp {
         lateinit var fragment: Fragment
 
         var doutorSelecionado : Doutor? = null
+        var consultaSelecionada : Consultas? = null
     }
 }

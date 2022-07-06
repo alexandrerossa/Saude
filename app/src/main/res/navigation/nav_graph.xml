@@ -24,7 +24,7 @@
     <fragment
         android:id="@+id/NovoDoutorFragment"
         android:name="pt.ipg.saude.NovoDoutorFragment"
-        android:label="@string/novo_doutor_fragment_label"
+        android:label="@string/novo_doutor"
         tools:layout="@layout/fragment_novo_doutor">
 
         <action
@@ -49,4 +49,9 @@
             android:id="@+id/action_eliminaDoutorFragment_to_ListaDoutorFragment"
             app:destination="@id/ListaDoutorFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/listaConsultasFragment"
+        android:name="pt.ipg.covid.ListaConsultasFragment"
+        android:label="fragment_lista_consultas"
+        tools:layout="@layout/fragment_lista_consultas" />
 </navigation>

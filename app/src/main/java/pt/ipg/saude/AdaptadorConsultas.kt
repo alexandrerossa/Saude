@@ -1,12 +1,14 @@
 package pt.ipg.saude
-
 import android.database.Cursor
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import pt.ipg.covid.ListaConsultasFragment
+import pt.ipg.saude.Consultas
+import kotlin.contracts.contract
 
-class AdaptadorDoutores(val fragment: ListaDoutorFragment) : RecyclerView.Adapter<AdaptadorDoutores.ViewHolderDoutores>() {
+class AdaptadorConsultas(val fragment: ListaConsultasFragment) : RecyclerView.Adapter<AdaptadorConsultas.ViewHolderConsultas>() {
 
     public var cursor: Cursor? = null
         get() = field
@@ -15,22 +17,22 @@ class AdaptadorDoutores(val fragment: ListaDoutorFragment) : RecyclerView.Adapte
             notifyDataSetChanged()
         }
 
-    class ViewHolderDoutores(itemView: View) : RecyclerView.ViewHolder(itemView), View.OnClickListener {
+    class ViewHolderConsultas(itemView: View) : RecyclerView.ViewHolder(itemView), View.OnClickListener {
 
-        private val textViewNomeDoutor = itemView.findViewById<TextView>(R.id.textViewDoutorEliminaNome)
-        private val textViewDataNascimento = itemView.findViewById<TextView>(R.id.textViewDoutorEliminaDataNascimento)
-        private val textViewEspecialidade= itemView.findViewById<TextView>(R.id.textViewDoutorEliminaEspecialidade)
-        private lateinit var doutores: Doutor
+        private val textViewNomeConsulta = itemView.findViewById<TextView>(R.id.textViewNomeConsultas)
+        private val textViewMacasOcupadas = itemView.findViewById<TextView>(R.id.textViewMacasOcupadas)
+        private val textViewMacasDisponiveis = itemView.findViewById<TextView>(R.id.textViewMacasDisponiveis)
+        private lateinit var consultas: Consultas
         init {
             itemView.setOnClickListener(this)
         }
 
-        fun atualizaDoutores(doutores: Doutor) {
-            this.doutores = doutores
+        fun atualizaConsultas(consultas: Consultas) {
+            this.consultas = consultas
 
-            textViewNomeDoutor.text = doutores.nome_doutor
-            textViewDataNascimento.text = doutores.dataNascimento.toString()
-            textViewEspecialidade.text = doutores.especialidade.toString()
+            textViewNomeConsulta.text = consultas.nome
+            textViewMacasOcupadas.text = consultas.macasocupadas
+            textViewMacasDisponiveis.text = consultas.macasdisponiveis
         }
 
         /**
@@ -46,8 +48,8 @@ class AdaptadorDoutores(val fragment: ListaDoutorFragment) : RecyclerView.Adapte
         private fun seleciona() {
             selecionado = this
             itemView.setBackgroundResource(R.color.cor_selecao)
-            DadosApp.doutorSelecionado = doutores
-            DadosApp.activity.atualizaMenuListaDoutores(true)
+            DadosApp.consultaSelecionada = consultas
+            DadosApp.activity.atualizaMenuListaConsultas(true)
         }
 
         private fun desSeleciona() {
@@ -56,7 +58,7 @@ class AdaptadorDoutores(val fragment: ListaDoutorFragment) : RecyclerView.Adapte
         }
 
         companion object {
-            var selecionado : ViewHolderDoutores? = null
+            var selecionado : ViewHolderConsultas? = null
         }
 
     }
@@ -84,10 +86,10 @@ class AdaptadorDoutores(val fragment: ListaDoutorFragment) : RecyclerView.Adapte
      * @see .getItemViewType
      * @see .onBindViewHolder
      */
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolderDoutores {
-        val itemDoutores = fragment.layoutInflater.inflate(R.layout.item_doutores, parent, false)
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolderConsultas {
+        val itemConsultas = fragment.layoutInflater.inflate(R.layout.item_consultas, parent, false)
 
-        return ViewHolderDoutores(itemDoutores)
+        return ViewHolderConsultas(itemConsultas)
     }
 
     /**
@@ -111,9 +113,9 @@ class AdaptadorDoutores(val fragment: ListaDoutorFragment) : RecyclerView.Adapte
      * item at the given position in the data set.
      * @param position The position of the item within the adapter's data set.
      */
-    override fun onBindViewHolder(holder: ViewHolderDoutores, position: Int) {
+    override fun onBindViewHolder(holder: ViewHolderConsultas, position: Int) {
         cursor!!.moveToPosition(position)
-        holder.atualizaDoutores(Doutor.fromCursor(cursor!!))
+        holder.atualizaConsultas(Consultas.fromCursor(cursor!!))
     }
 
     /**

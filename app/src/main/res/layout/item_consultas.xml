@@ -6,7 +6,7 @@
     android:orientation="vertical">
 
     <TextView
-        android:id="@+id/textViewDoutorNome"
+        android:id="@+id/textViewNomeConsultas"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/margem_campo"
@@ -15,22 +15,21 @@
         android:layout_marginEnd="@dimen/margem_campo"
         android:layout_marginRight="@dimen/margem_campo"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
-        tools:text="Tiago" />
-
-    <TextView
-        android:id="@+id/textViewDataNascimento"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="@dimen/margem_campo"
-        android:textAppearance="@style/TextAppearance.AppCompat.Small"
-        tools:text="27-02-2000" />
-
-    <TextView
-        android:id="@+id/textViewEspecialidade"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="@dimen/margem_campo"
-        android:textAppearance="@style/TextAppearance.AppCompat.Small"
         tools:text="Pediatria" />
 
+    <TextView
+        android:id="@+id/textViewMacasOcupadas"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/margem_campo"
+        android:textAppearance="@style/TextAppearance.AppCompat.Small"
+        tools:text="0" />
+
+    <TextView
+        android:id="@+id/textViewMacasDisponiveis"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/margem_campo"
+        android:textAppearance="@style/TextAppearance.AppCompat.Small"
+        tools:text="0" />
 </LinearLayout>

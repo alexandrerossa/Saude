@@ -1,7 +1,6 @@
 package pt.ipg.saude
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,12 +10,10 @@ import android.view.MenuItem
 
 import android.widget.TextView
 import android.widget.Toast
-import androidx.core.content.ContentProviderCompat.requireContext
-import androidx.loader.app.LoaderManager
+import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
-import pt.ipg.saude.DadosApp.Companion.activity
 
-class EliminaDoutorFragment {
+class EliminaDoutorFragment : Fragment(){
 
     private lateinit var textViewDoutor: TextView
     private lateinit var textViewDataNascimento: TextView
@@ -35,14 +32,18 @@ class EliminaDoutorFragment {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        textViewDoutor = view.findViewById(R.id.textViewNomeDoutor)
-        textViewDataNascimento = view.findViewById(R.id.textViewDataNascimento)
-        textViewEspecialidade = view.findViewById(R.id.textViewEspecialidade)
+        textViewDoutor = view.findViewById(R.id.textViewDoutorEliminaNome)
+        textViewDataNascimento = view.findViewById(R.id.textViewDoutorEliminaDataNascimento)
+        textViewEspecialidade = view.findViewById(R.id.textViewDoutorEliminaEspecialidade)
 
         val doutor = DadosApp.doutorSelecionado!!
         textViewDoutor.setText(doutor.nome_doutor)
         textViewDataNascimento.setText(doutor.dataNascimento)
         textViewEspecialidade.setText(doutor.especialidade)
+    }
+
+    fun navegaListaDoutor() {
+        findNavController().navigate(R.id.action_eliminaDoutorFragment_to_ListaDoutorFragment)
     }
 
     fun elimina() {

@@ -1,7 +1,6 @@
 package pt.ipg.saude
 
 import android.os.Bundle
-import com.google.android.material.snackbar.Snackbar
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
@@ -10,6 +9,7 @@ import androidx.navigation.ui.setupActionBarWithNavController
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.Toast
+import pt.ipg.covid.ListaConsultasFragment
 import pt.ipg.saude.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
@@ -65,7 +65,8 @@ class MainActivity : AppCompatActivity() {
                 R.menu.menu_lista_doutores -> (DadosApp.fragment as ListaDoutorFragment).processaOpcaoMenu(item)
                 R.menu.menu_novo_doutor -> (DadosApp.fragment as NovoDoutorFragment).processaOpcaoMenu(item)
                 R.menu.menu_edita_doutor -> (DadosApp.fragment as EditaDoutorFragment).processaOpcaoMenu(item)
-                //R.menu.menu_elimina_doutor -> (DadosApp.fragment as EliminaDoutorFragment).processaOpcaoMenu(item)
+                R.menu.menu_elimina_doutor -> (DadosApp.fragment as EliminaDoutorFragment).processaOpcaoMenu(item)
+                R.menu.menu_lista_consultas -> (DadosApp.fragment as ListaConsultasFragment).processaOpcaoMenu(item)
                 else -> false
             }
         }
@@ -81,5 +82,10 @@ class MainActivity : AppCompatActivity() {
     fun atualizaMenuListaDoutores(mostraBotoesAlterarEliminar : Boolean) {
         menu.findItem(R.id.action_alterar_doutor).setVisible(mostraBotoesAlterarEliminar)
         menu.findItem(R.id.action_eliminar_doutor).setVisible(mostraBotoesAlterarEliminar)
+    }
+
+    fun atualizaMenuListaConsultas(mostraBotoesAlterarEliminar: Boolean){
+        menu.findItem(R.id.action_alterar_consulta).setVisible(mostraBotoesAlterarEliminar)
+        menu.findItem(R.id.action_eliminar_consulta).setVisible(mostraBotoesAlterarEliminar)
     }
 }

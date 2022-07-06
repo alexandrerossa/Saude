@@ -7,6 +7,12 @@
     <string name="edita_doutor_fragment_label">Editar doutor</string>
     <string name="elimina_doutor_fragment_label">Eliminar doutor?</string>
 
+    <string name="lista_consultas_fragment_label">Consultas</string>
+    <string name="nova_consulta_fragment_label">Nova Consulta</string>
+    <string name="edita_consulta_fragment_label">Edita Cuidado</string>
+    <string name="elimina_consulta_fragment_label">Eliminar Cuidado?</string>
+
+
     <string name="novo_doutor">Novo doutor</string>
     <string name="alterar_doutor">Alterar doutor</string>
     <string name="eliminar_doutor">Eliminar doutor</string>
