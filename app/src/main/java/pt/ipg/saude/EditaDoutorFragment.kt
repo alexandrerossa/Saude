@@ -19,10 +19,7 @@ import androidx.loader.content.Loader
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.snackbar.Snackbar
 
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
-
-class EditaDoutorFragment : Fragment(),LoaderManager.LoaderCallbacks<Cursor> {
+    class EditaDoutorFragment : Fragment(),LoaderManager.LoaderCallbacks<Cursor> {
 
     private lateinit var editTextNome: EditText
     private lateinit var editTextDataNascimento: EditText
@@ -48,6 +45,11 @@ class EditaDoutorFragment : Fragment(),LoaderManager.LoaderCallbacks<Cursor> {
 
         LoaderManager.getInstance(this)
             .initLoader(ID_LOADER_MANAGER_CATEGORIAS, null, this)
+
+
+        editTextNome.setText(DadosApp.doutorSelecionado!!.nome_doutor)
+        editTextDataNascimento.setText(DadosApp.doutorSelecionado!!.dataNascimento)
+        editTextEspecialidade.setText(DadosApp.doutorSelecionado!!.especialidade)
     }
 
     fun navegaListaDoutor() {
@@ -62,15 +64,15 @@ class EditaDoutorFragment : Fragment(),LoaderManager.LoaderCallbacks<Cursor> {
             return
         }
 
-        val idade = editTextDataNascimento.text.toString()
-        if (idade.isEmpty()) {
+        val dataNascimento = editTextDataNascimento.text.toString()
+        if (dataNascimento.isEmpty()) {
             editTextDataNascimento.setError(getString(R.string.preencha_dataNascimento))
             editTextDataNascimento.requestFocus()
             return
         }
 
-        val sexo = editTextEspecialidade.text.toString()
-        if (sexo.isEmpty()) {
+        val especialidade = editTextEspecialidade.text.toString()
+        if (especialidade.isEmpty()) {
             editTextEspecialidade.setError(getString(R.string.preencha_especialidade))
             editTextEspecialidade.requestFocus()
             return
@@ -135,7 +137,19 @@ class EditaDoutorFragment : Fragment(),LoaderManager.LoaderCallbacks<Cursor> {
             )
     }
 
+        override fun onLoadFinished(loader: Loader<Cursor>, data: Cursor?) {
+            TODO("Not yet implemented")
+        }
+
+        override fun onLoaderReset(loader: Loader<Cursor>) {
+            TODO("Not yet implemented")
+        }
+
+
     companion object {
         const val ID_LOADER_MANAGER_CATEGORIAS = 0
     }
+
+
+
 }
