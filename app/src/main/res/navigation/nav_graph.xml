@@ -15,8 +15,8 @@
             android:id="@+id/action_ListaDoutorFragment_toNovoDoutorFragment"
             app:destination="@id/NovoDoutorFragment" />
         <action
-            android:id="@+id/action_ListaDoutorFragment_to_eliminadoutorFragment"
-            app:destination="@id/eliminaDoutorFragment" />
+            android:id="@+id/action_ListaDoutorFragment_to_editaDoutorFragment"
+            app:destination="@id/editaDoutorFragment" />
     </fragment>
     <fragment
         android:id="@+id/NovoDoutorFragment"
@@ -29,12 +29,12 @@
             app:destination="@id/ListaDoutorFragment" />
     </fragment>
     <fragment
-        android:id="@+id/eliminaDoutorFragment"
-        android:name="pt.ipg.saude.EliminaDoutorFragment"
-        android:label="@string/elimina_doutor_fragment_label"
-        tools:layout="@layout/fragment_elimina_doutor" >
+        android:id="@+id/editaDoutorFragment"
+        android:name="pt.ipg.saude.EditaDoutorFragment"
+        android:label="@string/fragment_edita_doutor"
+        tools:layout="@layout/fragment_edita_doutor" >
         <action
-            android:id="@+id/action_eliminaDoutorFragment_to_listaDoutorFragment"
+            android:id="@+id/action_editaDoutorFragment_to_listaDoutorFragment"
 
             app:destination="@id/ListaDoutorFragment" />
     </fragment>

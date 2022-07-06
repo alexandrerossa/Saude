@@ -14,7 +14,6 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import pt.ipg.saude.databinding.FragmentListaDoutorBinding
-import pt.ipg.saude.ContentProviderSaude
 
 /**
  * A simple [Fragment] subclass as the default destination in the navigation.
@@ -59,7 +58,7 @@ class ListaDoutorFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor> {
         }
 
         fun navegaEliminarDoutor() {
-            findNavController().navigate(R.id.action_ListaDoutorFragment_toNovoDoutorFragment)
+            //findNavController().navigate(R.id.action_ListaDoutorFragment_toNovoDoutorFragment)
         }
 
         fun processaOpcaoMenu(item: MenuItem): Boolean {

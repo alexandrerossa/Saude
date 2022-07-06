@@ -10,7 +10,7 @@
         android:layout_height="match_parent">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/editTextDoutorNome"
+            android:id="@+id/editTextDoutorEditaNome"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/margem_campo"
@@ -22,7 +22,7 @@
             android:layout_height="match_parent">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/editTextEnfermeiroDataNascimento"
+                android:id="@+id/editTextEnfermeiroEditaDataNascimento"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/data_de_nascimento" />
@@ -33,7 +33,7 @@
             android:layout_height="match_parent">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/editTextEnfermeiroEspecialidade"
+                android:id="@+id/editTextEnfermeiroEditaEspecialidade"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/especialidade" />

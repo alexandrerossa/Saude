@@ -7,12 +7,10 @@ import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import android.widget.EditText
-import android.widget.Spinner
 import android.widget.Toast
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.snackbar.Snackbar
 import pt.ipg.saude.databinding.FragmentNovoDoutorBinding
-import pt.ipg.saude.ContentProviderSaude
 
 /**
  * A simple [Fragment] subclass as the second destination in the navigation.

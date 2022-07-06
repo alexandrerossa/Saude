@@ -11,7 +11,7 @@
         android:layout_height="match_parent" />
 
     <com.google.android.material.textfield.TextInputEditText
-        android:id="@+id/editTextDoutorNome"
+        android:id="@+id/editTextDoutorEditaome"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="@string/doutor"
@@ -22,7 +22,7 @@
         android:layout_height="match_parent"/>
 
     <com.google.android.material.textfield.TextInputEditText
-        android:id="@+id/editTextDoutorDataNascimento"
+        android:id="@+id/editTextDoutorEditaDataNascimento"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/margem_campo"
@@ -33,7 +33,7 @@
         android:layout_height="match_parent"/>
 
     <com.google.android.material.textfield.TextInputEditText
-        android:id="@+id/editTextDoutorEspecialidade"
+        android:id="@+id/editTextDoutorEditarEspecialidade"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/margem_campo"

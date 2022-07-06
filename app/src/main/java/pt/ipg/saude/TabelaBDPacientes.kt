@@ -18,4 +18,6 @@ class TabelaBDPacientes(db: SQLiteDatabase) : TabelaBD(db, NOME) {
 
         val TODAS_COLUNAS = arrayOf(BaseColumns._ID, CAMPO_NOME_PACIENTE, CAMPO_DATA_DE_NASCIMENTO, CAMPO_SEXO, CAMPO_TIPO_CONSULTA, CAMPO_DOUTOR_RESPONSAVEL)
     }
+
+
 }

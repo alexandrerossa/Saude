@@ -6,20 +6,16 @@ import android.view.LayoutInflater
 import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
-import androidx.navigation.navArgument
 import android.database.Cursor
 import android.net.Uri
 import android.widget.EditText
-import android.widget.SimpleCursorAdapter
-import android.widget.Spinner
 import android.widget.Toast
 import androidx.loader.app.LoaderManager
 import androidx.loader.content.CursorLoader
 import androidx.loader.content.Loader
 import androidx.navigation.fragment.findNavController
-import com.google.android.material.snackbar.Snackbar
 
-    class EditaDoutorFragment : Fragment(),LoaderManager.LoaderCallbacks<Cursor> {
+    class EditaDoutorFragment : Fragment() {
 
     private lateinit var editTextNome: EditText
     private lateinit var editTextDataNascimento: EditText
@@ -39,13 +35,9 @@ import com.google.android.material.snackbar.Snackbar
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        editTextNome = view.findViewById(R.id.editTextDoutorNome)
-        editTextDataNascimento = view.findViewById(R.id.editTextDoutorDataNascimento)
-        editTextEspecialidade = view.findViewById(R.id.editTextDoutorEspecialidade)
-
-        LoaderManager.getInstance(this)
-            .initLoader(ID_LOADER_MANAGER_CATEGORIAS, null, this)
-
+        editTextNome = view.findViewById(R.id.editTextDoutorEditaNome)
+        editTextDataNascimento = view.findViewById(R.id.editTextDoutorEditaDataNascimento)
+        editTextEspecialidade = view.findViewById(R.id.editTextDoutorEditarEspecialidade)
 
         editTextNome.setText(DadosApp.doutorSelecionado!!.nome_doutor)
         editTextDataNascimento.setText(DadosApp.doutorSelecionado!!.dataNascimento)
@@ -53,7 +45,7 @@ import com.google.android.material.snackbar.Snackbar
     }
 
     fun navegaListaDoutor() {
-        findNavController().navigate(R.id.action_editaDoutorFragment_to_listaDoutoresFragment)
+        findNavController().navigate(R.id.action_cancelar_edita_DoutorFragment_to_ListaDoutorFragment)
     }
 
     fun guardar() {
@@ -125,31 +117,5 @@ import com.google.android.material.snackbar.Snackbar
 
         return true
     }
-
-    override fun onCreateLoader(id: Int, args: Bundle?): Loader<Cursor> {
-        return CursorLoader(
-            requireContext(),
-            ContentProviderSaude.TABELA_DOUTOR_PATH,
-            TabelaBDConsultas.TODAS_COLUNAS,
-            null, null,
-            TabelaBDDoutores.CAMPO_NOME_DOUTOR,
-
-            )
-    }
-
-        override fun onLoadFinished(loader: Loader<Cursor>, data: Cursor?) {
-            TODO("Not yet implemented")
-        }
-
-        override fun onLoaderReset(loader: Loader<Cursor>) {
-            TODO("Not yet implemented")
-        }
-
-
-    companion object {
-        const val ID_LOADER_MANAGER_CATEGORIAS = 0
-    }
-
-
 
 }
